@@ -1,2 +1,5 @@
 this is a telegram bot running on ubuntu server as background process that check streaming statuses(UP/DOWN) and more..
 it doesnt have any usage for regular people
+
+project is on an virtual environment named botenv
+and you can install dependencies from requirements.txt with command: pip install -r requirements.txt
