@@ -110,6 +110,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app = Application.builder().token(TOKEN).build()
 
     # commands
@@ -124,3 +125,6 @@ if __name__ == '__main__':
 
     # Run the bot until the user presses Ctrl-C
     app.run_polling(allowed_updates=Update.ALL_TYPES)
+=======
+	main()
+>>>>>>> fab7acf198163fab3f2cc031035d941c6de91e69
