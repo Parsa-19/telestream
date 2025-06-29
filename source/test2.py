@@ -23,8 +23,10 @@ class StreamPlus(object):
         self.api_url = self.set_api_url('plus') # plus1 is exmaple
         self.api_header = {"Authorization": "Basic cm9vdDo3ODBAYW1yMTIz"}
 
-    def parse_xml(self, response):
-        xml_node = '<>'
+    def parse_xml(self, xml_node, xml_string):
+        root = ET.fromstring(xml_string)
+        return root.findall(xml_node)[0].text # returns value of the node
+
 
     def request_api(self):
         return requests.get(self.api_url, headers = self.api_header)
@@ -38,14 +40,17 @@ class StreamPlus(object):
         requested_num = plus_nums[plus_indicator] # requested_num will be 1 or 2 or 3 according to plus_indicator
         self.api_url = f'http://185.236.36.132:8087/v2/servers/Wowza%20Streaming%20Engine/vhosts/_defaultVHost_/applications/plus/instances/_definst_/incomingstreams/plus.stream/monitoring/current' 
     
-    def extract_info_from_xml_response(self, response):
-        pass
-
 
 
  
 plus = StreamPlus()
 plus.set_api_url('plus') # query.data is one of [plus1, plus2, plus3]
+
 response = plus.request_api()
-print(response.text)
+# print(response.text, end = '\n----------------------\n')
+
+bytesIn = plus.parse_xml('BytesIn', response.text)
+print(bytesIn)
+
+
 # stream_info = plus.extract_info_from_xml_response(response)
